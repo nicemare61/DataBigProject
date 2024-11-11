@@ -10,6 +10,7 @@ namespace Searching
         public void Start()
         {
             GetRemainEnergy();
+            element = OOPMapGenerator.GetRandomElement<Element>();
         }
 
         public override void Hit()

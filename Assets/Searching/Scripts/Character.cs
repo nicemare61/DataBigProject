@@ -15,6 +15,7 @@ namespace Searching
         [Header("Character")]
         public int energy;
         public int AttackPoint;
+        public Element element;
         
 
         protected bool isAlive;
