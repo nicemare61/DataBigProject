@@ -11,6 +11,21 @@ namespace Searching
         {
             GetRemainEnergy();
             element = OOPMapGenerator.GetRandomElement<Element>();
+            if (element == Element.Fire)
+            {
+                SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+                sprite.color = Color.red;
+            }
+            else if (element == Element.Plant)
+            {
+                SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+                sprite.color = Color.green;
+            }
+            else
+            {
+                SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+                sprite.color = Color.blue;
+            }
         }
 
         public override void Hit()
