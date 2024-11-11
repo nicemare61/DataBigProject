@@ -1,8 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using Random = UnityEngine.Random;
 
+public enum Element
+{
+    Fire,
+    Water,
+    Plant
+}
 namespace Searching
 {
 
@@ -259,6 +268,12 @@ namespace Searching
             {
                 enemy.RandomMove();
             }
+        }
+        
+        public static T GetRandomElement<T>()
+        {
+            var v = Enum.GetValues(typeof(T));
+            return (T) v.GetValue(Random.Range(0, v.Length));
         }
     }
 }
