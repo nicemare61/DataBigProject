@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,7 +6,14 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.EventSystems.EventTrigger;
+using Random = System.Random;
 
+public enum Element
+{
+    Fire,
+    Water,
+    Plant
+}
 namespace Searching
 {
     public class Character : Identity
@@ -13,16 +21,11 @@ namespace Searching
         [Header("Character")]
         public int energy;
         public int AttackPoint;
+        public Array element = Enum.GetValues(typeof(Element));
 
         protected bool isAlive;
         protected bool isFreeze;
-
-        public enum Element
-        {
-            fire
-            ,plant
-            ,water
-        }
+        
         // Start is called before the first frame update
         protected void GetRemainEnergy()
         {
@@ -186,6 +189,13 @@ namespace Searching
             {
                 Destroy(gameObject);
             }
+        }
+
+        public Element GetRandomElement()
+        {
+            Random r = new Random();
+            Element randomElement = (Element)element.GetValue(r.Next(element.Length));
+            return randomElement;
         }
     }
 }
