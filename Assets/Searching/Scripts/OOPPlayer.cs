@@ -41,6 +41,11 @@ namespace Searching
             {
                 UseFireStorm();
             }
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                
+            }
         }
 
         public void Attack(OOPEnemy _enemy)
@@ -77,6 +82,11 @@ namespace Searching
             {
                 Debug.Log("No FireStorm in inventory");
             }
+        }
+
+        public void UseFireBall()
+        {
+            var enemies = mapGenerator.GetEnemies();
         }
 
         public OOPEnemy[] SortEnemiesByRemainningEnergy1()
