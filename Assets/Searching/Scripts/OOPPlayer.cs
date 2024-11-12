@@ -73,6 +73,7 @@ namespace Searching
 
         public void UseFireStorm()
         {
+            energy--;
             if (inventory.numberOfItem("FireStorm") > 0)
             {
                 inventory.UseItem("FireStorm");
@@ -95,6 +96,7 @@ namespace Searching
 
         public void UseFireBall()
         {
+            energy--;
             OOPEnemy[] enemies = SortEnemiesByRemainningEnergy1();
             int count = 1;
             if (count > enemies.Length)
@@ -114,6 +116,7 @@ namespace Searching
         }
         public void UseLeafBlade()
         {
+            energy--;
             OOPEnemy[] enemies = SortEnemiesByRemainningEnergy1();
             int count = 1;
             if (count > enemies.Length)
