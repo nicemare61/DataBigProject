@@ -21,7 +21,7 @@ namespace Searching
                 SpriteRenderer sprite = GetComponent<SpriteRenderer>();
                 sprite.color = Color.green;
             }
-            else
+            else if (element == Element.Water)
             {
                 SpriteRenderer sprite = GetComponent<SpriteRenderer>();
                 sprite.color = Color.blue;

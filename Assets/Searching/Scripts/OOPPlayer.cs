@@ -44,7 +44,16 @@ namespace Searching
 
             if (Input.GetKeyDown(KeyCode.J))
             {
-                
+                UseFireBall();
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                UseWaterBall();
+            }
+
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                UseLeafBlade();
             }
         }
 
@@ -86,7 +95,60 @@ namespace Searching
 
         public void UseFireBall()
         {
-            var enemies = mapGenerator.GetEnemies();
+            OOPEnemy[] enemies = SortEnemiesByRemainningEnergy1();
+            int count = 1;
+            if (count > enemies.Length)
+            {
+                count = enemies.Length;
+            }
+
+            for (int a = 0; a < count; a++)
+            {
+                if (enemies[a].element == Element.Plant)
+                {enemies[a].TakeDamage(10);}
+                else
+                {
+                 enemies[a].TakeDamage(5);   
+                }
+            }
+        }
+        public void UseLeafBlade()
+        {
+            OOPEnemy[] enemies = SortEnemiesByRemainningEnergy1();
+            int count = 1;
+            if (count > enemies.Length)
+            {
+                count = enemies.Length;
+            }
+
+            for (int a = 0; a < count; a++)
+            {
+                if (enemies[a].element == Element.Water)
+                {enemies[a].TakeDamage(10);}
+                else
+                {
+                    enemies[a].TakeDamage(5);   
+                }
+            }
+        }
+        public void UseWaterBall()
+        {
+            OOPEnemy[] enemies = SortEnemiesByRemainningEnergy1();
+            int count = 1;
+            if (count > enemies.Length)
+            {
+                count = enemies.Length;
+            }
+
+            for (int a = 0; a < count; a++)
+            {
+                if (enemies[a].element == Element.Fire)
+                {enemies[a].TakeDamage(10);}
+                else
+                {
+                    enemies[a].TakeDamage(5);   
+                }
+            }
         }
 
         public OOPEnemy[] SortEnemiesByRemainningEnergy1()

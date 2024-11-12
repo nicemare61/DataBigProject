@@ -157,7 +157,7 @@ namespace Searching
         {
             energy -= Damage;
             isFreeze = freeze;
-            GetComponent<SpriteRenderer>().color = Color.blue;
+            GetComponent<SpriteRenderer>().color = Color.cyan;
             Debug.Log(Name + " Current Energy : " + energy);
             Debug.Log("you is Freeze");
             CheckDead();
