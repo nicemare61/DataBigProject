@@ -105,10 +105,10 @@ namespace Searching
             for (int a = 0; a < count; a++)
             {
                 if (enemies[a].element == Element.Plant)
-                {enemies[a].TakeDamage(10);}
+                {enemies[a].TakeDamage(4);}
                 else
                 {
-                 enemies[a].TakeDamage(5);   
+                 enemies[a].TakeDamage(2);   
                 }
             }
         }
@@ -124,10 +124,10 @@ namespace Searching
             for (int a = 0; a < count; a++)
             {
                 if (enemies[a].element == Element.Water)
-                {enemies[a].TakeDamage(10);}
+                {enemies[a].TakeDamage(4);}
                 else
                 {
-                    enemies[a].TakeDamage(5);   
+                    enemies[a].TakeDamage(2);   
                 }
             }
         }
@@ -143,10 +143,10 @@ namespace Searching
             for (int a = 0; a < count; a++)
             {
                 if (enemies[a].element == Element.Fire)
-                {enemies[a].TakeDamage(10);}
+                {enemies[a].TakeDamage(4);}
                 else
                 {
-                    enemies[a].TakeDamage(5);   
+                    enemies[a].TakeDamage(2);   
                 }
             }
         }
