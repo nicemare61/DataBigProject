@@ -11,7 +11,7 @@ namespace Searching
         public string unlockKey;
         public GameObject YouWin;
 
-        public override void Hit()
+        /*public override void Hit()
         {
             if (mapGenerator.player.inventory.numberOfItem(unlockKey) > 0)
             {
@@ -24,6 +24,6 @@ namespace Searching
             {
                 Debug.Log($"Exit locked, require key: {unlockKey}");
             }
-        }
+        }*/
     }
 }

@@ -25,8 +25,7 @@ namespace Searching
         public OOPPlayer player;
         public Vector2Int playerStartPos;
 
-        [Header("Set Exit")]
-        public OOPExit Exit;
+        [Header("Set Wave")] public int waveCount = 1;
 
         [Header("Set Prefab")]
         public GameObject[] floorsPrefab;
@@ -48,7 +47,7 @@ namespace Searching
         public int itemPotionCount;
         public int itemKeyCount;
         public int itemFireStormCount;
-        public int enemyCount;
+        public int enemyCount = 3;
 
         public int[,] mapdata;
 
@@ -57,6 +56,8 @@ namespace Searching
         public OOPFireStormItem[,] fireStorms;
         public OOPItemKey[,] keys;
         public OOPEnemy[,] enemies;
+        public OOPExit exit;
+        public int enemyAlive;
 
         // block types ...
         [Header("Block Types")]
@@ -65,7 +66,7 @@ namespace Searching
         public int demonWall = 1;
         public int potion = 2;
         public int bonuesPotion = 3;
-        public int exit = 4;
+        /*public int exit = 4;*/
         public int key = 5;
         public int enemy = 6;
         public int fireStorm = 7;
@@ -127,7 +128,7 @@ namespace Searching
                 }
             }
 
-            keys = new OOPItemKey[X, Y];
+            /*keys = new OOPItemKey[X, Y];
             count = 0;
             while (count < itemKeyCount)
             {
@@ -138,21 +139,10 @@ namespace Searching
                     PlaceKey(x, y);
                     count++;
                 }
-            }
-
-            enemies = new OOPEnemy[X, Y];
-            count = 0;
-            while (count < enemyCount)
-            {
-                int x = Random.Range(0, X);
-                int y = Random.Range(0, Y);
-                if (mapdata[x, y] == empty)
-                {
-                    PlaceEnemy(x, y);
-                    count++;
-                }
-            }
-
+            }*/
+            
+            GenerateEnemy(count);
+            
             fireStorms = new OOPFireStormItem[X, Y];
             count = 0;
             while (count < itemFireStormCount)
@@ -166,8 +156,17 @@ namespace Searching
                 }
             }
 
-            mapdata[X - 1, Y - 1] = exit;
-            Exit.transform.position = new Vector3(X - 1, Y - 1, 0);
+            /*mapdata[X - 1, Y - 1] = exit;
+            Exit.transform.position = new Vector3(X - 1, Y - 1, 0);*/
+        }
+
+        private void Update()
+        {
+            if (enemyAlive <= 0)
+            {
+                WaveManager();
+            }
+
         }
 
         public int GetMapData(float x, float y)
@@ -204,6 +203,7 @@ namespace Searching
 
         public void PlaceEnemy(int x, int y)
         {
+            
             int r = Random.Range(0, enemiesPrefab.Length);
             GameObject obj = Instantiate(enemiesPrefab[r], new Vector3(x, y, 0), Quaternion.identity);
             obj.transform.parent = itemPotionParent;
@@ -274,6 +274,50 @@ namespace Searching
         {
             var v = Enum.GetValues(typeof(T));
             return (T) v.GetValue(Random.Range(0, v.Length));
+        }
+
+        public void GenerateEnemy(int count)
+        {
+            enemies = new OOPEnemy[X, Y];
+            count = 0;
+            while (count < enemyCount)
+            {
+                int x = Random.Range(0, X);
+                int y = Random.Range(0, Y);
+                if (mapdata[x, y] == empty)
+                {
+                    PlaceEnemy(x, y);
+                    count++;
+                }
+            }
+        }
+       
+
+        public void WaveManager()
+        {
+            if (waveCount < 4)
+            {
+                waveCount++;
+                enemyCount++;
+                GenerateEnemy(0);
+            }
+            else if (waveCount < 9)
+            {
+                waveCount++;
+                enemyCount += 2;
+                GenerateEnemy(0);
+            }
+            else if (waveCount == 9)
+            {
+                waveCount++;
+                enemyCount += 4;
+                GenerateEnemy(0);
+            }
+            else
+            {
+                enemyCount = 0;
+                Debug.Log("You Win!!!");
+            }
         }
     }
 }

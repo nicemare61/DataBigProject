@@ -60,13 +60,13 @@ namespace Searching
                     positionY = toY;
                     transform.position = new Vector3(positionX, positionY, 0);
                 }
-                else if (IsExit(toX, toY))
+                /*else if (IsExit(toX, toY))
                 {
-                    mapGenerator.Exit.Hit();
+                    /*mapGenerator.Exit.Hit();
                     positionX = toX;
                     positionY = toY;
                     transform.position = new Vector3(positionX, positionY, 0);
-                }
+                }*/
                 else if (IsKey(toX, toY))
                 {
                     mapGenerator.keys[toX, toY].Hit();
@@ -141,11 +141,11 @@ namespace Searching
             int mapData = mapGenerator.GetMapData(x, y);
             return mapData == mapGenerator.enemy;
         }
-        public bool IsExit(int x, int y)
+        /*public bool IsExit(int x, int y)
         {
             int mapData = mapGenerator.GetMapData(x, y);
             return mapData == mapGenerator.exit;
-        }
+        }*/
 
         public virtual void TakeDamage(int Damage)
         {

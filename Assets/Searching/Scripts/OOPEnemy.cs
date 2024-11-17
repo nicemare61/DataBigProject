@@ -11,6 +11,7 @@ namespace Searching
         {
             GetRemainHealth();
             element = OOPMapGenerator.GetRandomElement<Element>();
+            mapGenerator.enemyAlive++;
             if (element == Element.Fire)
             {
                 SpriteRenderer sprite = GetComponent<SpriteRenderer>();
@@ -46,6 +47,7 @@ namespace Searching
             {
                 mapGenerator.enemies[positionX, positionY] = null;
                 mapGenerator.mapdata[positionX, positionY] = mapGenerator.empty;
+                mapGenerator.enemyAlive--;
             }
         }
 
