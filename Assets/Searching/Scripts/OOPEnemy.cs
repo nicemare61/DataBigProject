@@ -9,7 +9,7 @@ namespace Searching
     {
         public void Start()
         {
-            GetRemainEnergy();
+            GetRemainHealth();
             element = OOPMapGenerator.GetRandomElement<Element>();
             if (element == Element.Fire)
             {
@@ -42,7 +42,7 @@ namespace Searching
         protected override void CheckDead()
         {
             base.CheckDead();
-            if (energy <= 0)
+            if (health <= 0)
             {
                 mapGenerator.enemies[positionX, positionY] = null;
                 mapGenerator.mapdata[positionX, positionY] = mapGenerator.empty;

@@ -13,7 +13,7 @@ namespace Searching
     public class Character : Identity
     {
         [Header("Character")]
-        public int energy;
+        public int health;
         public int AttackPoint;
         public Element element;
         
@@ -22,9 +22,9 @@ namespace Searching
         protected bool isFreeze;
         
         // Start is called before the first frame update
-        protected void GetRemainEnergy()
+        protected void GetRemainHealth()
         {
-            Debug.Log(Name + " : " + energy);
+            Debug.Log(Name + " : " + health);
         }
 
         public virtual void Move(Vector2 direction)
@@ -149,16 +149,16 @@ namespace Searching
 
         public virtual void TakeDamage(int Damage)
         {
-            energy -= Damage;
-            Debug.Log(Name + " Current Energy : " + energy);
+            health -= Damage;
+            Debug.Log(Name + " Current Health : " + health);
             CheckDead();
         }
         public virtual void TakeDamage(int Damage, bool freeze)
         {
-            energy -= Damage;
+            health -= Damage;
             isFreeze = freeze;
             GetComponent<SpriteRenderer>().color = Color.cyan;
-            Debug.Log(Name + " Current Energy : " + energy);
+            Debug.Log(Name + " Current Health : " + health);
             Debug.Log("you is Freeze");
             CheckDead();
         }
@@ -172,15 +172,15 @@ namespace Searching
             Heal(healPoint, false);
         }
 
-        public void Heal(int healPoint, bool Bonuse)
+        public void Heal(int healPoint, bool Bonus)
         {
-            energy += healPoint * (Bonuse ? 2 : 1);
-            Debug.Log("Current Energy : " + energy);
+            health += healPoint * (Bonus ? 2 : 1);
+            Debug.Log("Current Health : " + health);
         }
 
         protected virtual void CheckDead()
         {
-            if (energy <= 0)
+            if (health <= 0)
             {
                 Destroy(gameObject);
             }

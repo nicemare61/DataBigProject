@@ -10,12 +10,13 @@ namespace Searching
 {
     public class OOPPlayer : Character
     {
+        public int energy;
         public Inventory inventory;
 
         public void Start()
         {
             PrintInfo();
-            GetRemainEnergy();
+            GetRemainHealth();
             
         }
 
@@ -77,7 +78,7 @@ namespace Searching
             if (inventory.numberOfItem("FireStorm") > 0)
             {
                 inventory.UseItem("FireStorm");
-                OOPEnemy[] enemies = SortEnemiesByRemainningEnergy2();
+                OOPEnemy[] enemies = SortEnemiesByRemainningHealth2();
                 int count = 3;
                 if (count > enemies.Length)
                 {
@@ -97,7 +98,7 @@ namespace Searching
         public void UseFireBall()
         {
             energy--;
-            OOPEnemy[] enemies = SortEnemiesByRemainningEnergy1();
+            OOPEnemy[] enemies = SortEnemiesByRemainningHealth1();
             int count = 1;
             if (count > enemies.Length)
             {
@@ -117,7 +118,7 @@ namespace Searching
         public void UseLeafBlade()
         {
             energy--;
-            OOPEnemy[] enemies = SortEnemiesByRemainningEnergy1();
+            OOPEnemy[] enemies = SortEnemiesByRemainningHealth1();
             int count = 1;
             if (count > enemies.Length)
             {
@@ -136,7 +137,7 @@ namespace Searching
         }
         public void UseWaterBall()
         {
-            OOPEnemy[] enemies = SortEnemiesByRemainningEnergy1();
+            OOPEnemy[] enemies = SortEnemiesByRemainningHealth1();
             int count = 1;
             if (count > enemies.Length)
             {
@@ -154,7 +155,7 @@ namespace Searching
             }
         }
 
-        public OOPEnemy[] SortEnemiesByRemainningEnergy1()
+        public OOPEnemy[] SortEnemiesByRemainningHealth1()
         {
             // do selection sort of enemy's energy
             var enemies = mapGenerator.GetEnemies();
@@ -163,7 +164,7 @@ namespace Searching
                 int minIndex = i;
                 for (int j = i + 1; j < enemies.Length; j++)
                 {
-                    if (enemies[j].energy < enemies[minIndex].energy)
+                    if (enemies[j].health < enemies[minIndex].health)
                     {
                         minIndex = j;
                     }
@@ -175,10 +176,10 @@ namespace Searching
             return enemies;
         }
 
-        public OOPEnemy[] SortEnemiesByRemainningEnergy2()
+        public OOPEnemy[] SortEnemiesByRemainningHealth2()
         {
             var enemies = mapGenerator.GetEnemies();
-            Array.Sort(enemies, (a, b) => a.energy.CompareTo(b.energy));
+            Array.Sort(enemies, (a, b) => a.health.CompareTo(b.health));
             return enemies;
         }
 
