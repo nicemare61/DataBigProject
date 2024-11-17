@@ -17,6 +17,7 @@ namespace Searching
         public int cd5 = 0;
         public int cd6 = 0;
         public int energy = 30;
+        public int point = 5;
         public Inventory inventory;
 
         public void Start()
@@ -28,6 +29,7 @@ namespace Searching
 
         public void Update()
         {
+            SkillBook skillBook = new SkillBook();
             if (Input.GetKeyDown(KeyCode.W))
             {
                 Move(Vector2.up);
@@ -299,11 +301,7 @@ namespace Searching
             {
                 Damage = Damage * 2;
             }
-            else
-            {
-                
-            }
-
+            
             return Damage;
         }
     }

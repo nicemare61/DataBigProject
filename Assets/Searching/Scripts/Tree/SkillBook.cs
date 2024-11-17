@@ -8,15 +8,21 @@ namespace Tree
     public class SkillBook : MonoBehaviour
     {
         public SkillTree attackSkillTree;
+        public SkillTree fireSkillTree;
+        public SkillTree waterSkillTree;
+        public SkillTree plantSkillTree;
 
-        Skill attack;
+        public Skill attack;
         //Skill fireStorm;
-        Skill fireBall;
+        public Skill fireBall;
         //Skill fireBlast;
        // Skill fireWave;
         //Skill fireExplosion;
-        private Skill waterBall;
-        private Skill leafBlade;
+        public Skill waterBall;
+        public Skill leafBlade;
+        public Skill fireWall;
+        public Skill waterCannon;
+        public Skill seedBomb;
 
         public void Start()
         {
@@ -32,23 +38,34 @@ namespace Tree
 
             attack = new Skill("Attack");
             attack.isAvailable = true;
+            
+            this.attackSkillTree = new SkillTree(attack);
 
             //fireStorm = new Skill("FireStorm");
             fireBall = new Skill("FireBall");
-            //fireBlast = new Skill("FireBlast");
-            //fireWave = new Skill("FireWave");
-            //fireExplosion = new Skill("FireExplosion");
-
-            attack.nextSkills.Add(fireBall);
-            attack.nextSkills.Add(leafBlade);
-            attack.nextSkills.Add(waterBall);
-            //fireStorm.nextSkills.Add(fireBlast);
-            //fireStorm.nextSkills.Add(fireBall);
-            //fireBall.nextSkills.Add(fireWave);
+            fireBall.isAvailable = false;
+            
+            fireBall.nextSkills.Add(fireWall);
+            fireWall = new Skill("FireWall");
+            fireWall.isAvailable = false;
+            this.fireSkillTree = new SkillTree(fireBall);
             //fireWave.nextSkills.Add(fireExplosion);
-
-
-            this.attackSkillTree = new SkillTree(attack);
+            
+            waterBall = new Skill("WaterBall");
+            waterBall.isAvailable = false;
+            
+            waterBall.nextSkills.Add(waterCannon);
+            waterCannon = new Skill("WaterCannon");
+            waterCannon.isAvailable = false;
+            this.waterSkillTree = new SkillTree(waterBall);
+            
+            leafBlade = new Skill("LeafBlade");
+            leafBlade.isAvailable = false;
+            
+            leafBlade.nextSkills.Add(seedBomb);
+            seedBomb = new Skill("SeedBomb");
+            seedBomb.isAvailable = false;
+            this.plantSkillTree = new SkillTree(leafBlade);
         }
 
         public void Update()
@@ -58,28 +75,51 @@ namespace Tree
                 attackSkillTree.rootSkill.PrintSkillTreeHierarchy("");
                 // attackSkillTree.rootSkill.PrintSkillTree();
                 Debug.Log("====================================");
+                
+                fireSkillTree.rootSkill.PrintSkillTreeHierarchy("");
+                // attackSkillTree.rootSkill.PrintSkillTree();
+                Debug.Log("====================================");
+                waterSkillTree.rootSkill.PrintSkillTreeHierarchy("");
+                // attackSkillTree.rootSkill.PrintSkillTree();
+                Debug.Log("====================================");
+                plantSkillTree.rootSkill.PrintSkillTreeHierarchy("");
+                Debug.Log("====================================");
             }
 
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                attack.Unlock();
-            }
-
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                fireBall.Unlock();
-            }
-
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                waterBall.Unlock();
-            }
-
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                leafBlade.Unlock();
-            }
+           
         }
+
+        public void UnlockFireBall()
+        {
+            fireBall.Unlock();
+        }
+
+        public void UnlockWaterBall()
+        {
+            waterBall.Unlock();
+        }
+
+        public void UnlockLeafBlade()
+        {
+            leafBlade.Unlock();
+        }
+
+        public void UnlockFireWall()
+        {
+            fireWall.Unlock();
+        }
+
+        public void UnlockWaterCannon()
+        {
+            waterCannon.Unlock();
+        }
+
+        public void UnlockSeedBomb()
+        {
+            seedBomb.Unlock();
+        }
+
+        
     }
 
 }

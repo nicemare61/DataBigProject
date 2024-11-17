@@ -182,6 +182,11 @@ namespace Searching
         {
             if (health <= 0)
             {
+                if (this is OOPEnemy)
+                {
+                    OOPPlayer oopPlayer = new OOPPlayer();
+                    oopPlayer.point++;
+                }
                 Destroy(gameObject);
             }
         }
