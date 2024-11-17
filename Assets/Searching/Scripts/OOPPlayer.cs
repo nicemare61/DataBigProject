@@ -10,12 +10,12 @@ namespace Searching
 {
     public class OOPPlayer : Character
     {
-        public int CD1 = 0;
-        public int CD2 = 0;
-        public int CD3 = 0;
-        public int CD4 = 0;
-        public int CD5 = 0;
-        public int CD6 = 0;
+        public int cd1 = 0;
+        public int cd2 = 0;
+        public int cd3 = 0;
+        public int cd4 = 0;
+        public int cd5 = 0;
+        public int cd6 = 0;
         public int energy = 30;
         public Inventory inventory;
 
@@ -52,24 +52,24 @@ namespace Searching
                 energy += 2;
                 AllCDMinus();
             }
-            if (Input.GetKeyDown(KeyCode.J)&& CD1 == 0)
+            if (Input.GetKeyDown(KeyCode.J)&& cd1 == 0)
             {
                 UseFireBall();
-                CD1 = 3;
-                AllCDMinusExcept(CD1);
+                cd1 = 3;
+                AllCDMinusExcept(cd1);
             }
-            if (Input.GetKeyDown(KeyCode.K)&& CD2 == 0)
+            if (Input.GetKeyDown(KeyCode.K)&& cd2 == 0)
             {
                 UseWaterBall();
-                CD2 = 3;
-                AllCDMinusExcept(CD2);
+                cd2 = 3;
+                AllCDMinusExcept(cd2);
             }
 
-            if (Input.GetKeyDown(KeyCode.L)&& CD3 == 0)
+            if (Input.GetKeyDown(KeyCode.L)&& cd3 == 0)
             {
                 UseLeafBlade();
-                CD3 = 3;
-                AllCDMinusExcept(CD3);
+                cd3 = 3;
+                AllCDMinusExcept(cd3);
             }
         }
 
@@ -169,7 +169,7 @@ namespace Searching
                     {
                         minIndex = j;
                     }
-                }
+                } 
                 var temp = enemies[i];
                 enemies[i] = enemies[minIndex];
                 enemies[minIndex] = temp;
@@ -186,102 +186,102 @@ namespace Searching
 
         public void AllCDMinus()
         {
-            CD1--;
-            CD2--;
-            CD3--;
-            CD4--;
-            CD5--;
-            CD6--;
-            if (CD1 <= 0)
+            cd1--;
+            cd2--;
+            cd3--;
+            cd4--;
+            cd5--;
+            cd6--;
+            if (cd1 <= 0)
             {
-                CD1 = 0;
+                cd1 = 0;
             }
 
-            if (CD2 <= 0)
+            if (cd2 <= 0)
             {
-                CD2 = 0;
+                cd2 = 0;
             }
 
-            if (CD3 <= 0)
+            if (cd3 <= 0)
             {
-                CD3 = 0;
+                cd3 = 0;
             }
 
-            if (CD4 <= 0)
+            if (cd4 <= 0)
             {
-                CD4 = 0;
+                cd4 = 0;
             }
 
-            if (CD5 <= 0)
+            if (cd5 <= 0)
             {
-                CD5 = 0;
+                cd5 = 0;
             }
 
-            if (CD6 <= 0)
+            if (cd6 <= 0)
             {
-                CD6 = 0;
+                cd6 = 0;
             }
         }
         public void AllCDMinusExcept(int CDnotremove)
         {
-            if (CD1.ToString() == CDnotremove.ToString())
+            if (cd1.ToString() == CDnotremove.ToString())
             {
-                CD1++;
+                cd1++;
             }
-            if (CD2.ToString() == CDnotremove.ToString())
+            else if (cd2.ToString() == CDnotremove.ToString())
             {
-                CD2++;
+                cd2++;
             }
-            if (CD3.ToString() == CDnotremove.ToString())
+            else if (cd3.ToString() == CDnotremove.ToString())
             {
-                CD3++;
+                cd3++;
             }
-            if (CD4.ToString() == CDnotremove.ToString())
+            else if (cd4.ToString() == CDnotremove.ToString())
             {
-                CD4++;
+                cd4++;
             }
-            if (CD5.ToString() == CDnotremove.ToString())
+            else if (cd5.ToString() == CDnotremove.ToString())
             {
-                CD5++;
+                cd5++;
             }
-            if (CD6.ToString() == CDnotremove.ToString())
+            else if (cd6.ToString() == CDnotremove.ToString())
             {
-                CD6++;
+                cd6++;
             }
-            CD1--;
-            CD2--;
-            CD3--;
-            CD4--;
-            CD5--;
-            CD6--;
-            if (CD1 <= 0)
+            cd1--;
+            cd2--;
+            cd3--;
+            cd4--;
+            cd5--;
+            cd6--;
+            if (cd1 <= 0)
             {
-                CD1 = 0;
-            }
-
-            if (CD2 <= 0)
-            {
-                CD2 = 0;
+                cd1 = 0;
             }
 
-            if (CD3 <= 0)
+            if (cd2 <= 0)
             {
-                CD3 = 0;
+                cd2 = 0;
             }
 
-            if (CD4 <= 0)
+            if (cd3 <= 0)
             {
-                CD4 = 0;
+                cd3 = 0;
             }
 
-            if (CD5 <= 0)
+            if (cd4 <= 0)
             {
-                CD5 = 0;
+                cd4 = 0;
             }
 
-            if (CD6 <= 0)
+            if (cd5 <= 0)
             {
-                CD6 = 0;
+                cd5 = 0;
+            }
+
+            if (cd6 <= 0)
+            {
+                cd6 = 0;
             }
         }
 
