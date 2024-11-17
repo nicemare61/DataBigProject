@@ -10,6 +10,12 @@ namespace Searching
 {
     public class OOPPlayer : Character
     {
+        public int CD1 = 0;
+        public int CD2 = 0;
+        public int CD3 = 0;
+        public int CD4 = 0;
+        public int CD5 = 0;
+        public int CD6 = 0;
         public int energy;
         public Inventory inventory;
 
@@ -26,39 +32,44 @@ namespace Searching
             {
                 Move(Vector2.up);
                 energy += 2;
+                AllCDMinus();
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
                 Move(Vector2.down);
                 energy += 2;
+                AllCDMinus();
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
                 Move(Vector2.left);
                 energy += 2;
+                AllCDMinus();
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
                 Move(Vector2.right);
                 energy += 2;
+                AllCDMinus();
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                UseFireStorm();
-            }
-
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.J)&& CD1 == 0)
             {
                 UseFireBall();
+                CD1 = 3;
+                AllCDMinusExcept(CD1);
             }
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.K)&& CD2 == 0)
             {
                 UseWaterBall();
+                CD2 = 3;
+                AllCDMinusExcept(CD2);
             }
 
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.L)&& CD3 == 0)
             {
                 UseLeafBlade();
+                CD3 = 3;
+                AllCDMinusExcept(CD3);
             }
         }
 
@@ -76,9 +87,9 @@ namespace Searching
             }
         }
 
-        public void UseFireStorm()
+        /*public void UseFireStorm()
         {
-            energy--;
+            energy -=5;
             if (inventory.numberOfItem("FireStorm") > 0)
             {
                 inventory.UseItem("FireStorm");
@@ -97,11 +108,11 @@ namespace Searching
             {
                 Debug.Log("No FireStorm in inventory");
             }
-        }
+        }*/
 
         public void UseFireBall()
         {
-            energy--;
+            energy-= 5;
             OOPEnemy[] enemies = SortEnemiesByRemainningHealth1();
             int count = 1;
             if (count > enemies.Length)
@@ -121,7 +132,7 @@ namespace Searching
         }
         public void UseLeafBlade()
         {
-            energy--;
+            energy-= 5;
             OOPEnemy[] enemies = SortEnemiesByRemainningHealth1();
             int count = 1;
             if (count > enemies.Length)
@@ -132,7 +143,7 @@ namespace Searching
             for (int a = 0; a < count; a++)
             {
                 if (enemies[a].element == Element.Water)
-                {enemies[a].TakeDamage(4);}
+                {enemies[a].TakeDamage(10);}
                 else
                 {
                     enemies[a].TakeDamage(2);   
@@ -141,6 +152,7 @@ namespace Searching
         }
         public void UseWaterBall()
         {
+            energy -= 5;
             OOPEnemy[] enemies = SortEnemiesByRemainningHealth1();
             int count = 1;
             if (count > enemies.Length)
@@ -187,6 +199,106 @@ namespace Searching
             return enemies;
         }
 
+        public void AllCDMinus()
+        {
+            CD1--;
+            CD2--;
+            CD3--;
+            CD4--;
+            CD5--;
+            CD6--;
+            if (CD1 <= 0)
+            {
+                CD1 = 0;
+            }
+
+            if (CD2 <= 0)
+            {
+                CD2 = 0;
+            }
+
+            if (CD3 <= 0)
+            {
+                CD3 = 0;
+            }
+
+            if (CD4 <= 0)
+            {
+                CD4 = 0;
+            }
+
+            if (CD5 <= 0)
+            {
+                CD5 = 0;
+            }
+
+            if (CD6 <= 0)
+            {
+                CD6 = 0;
+            }
+        }
+        public void AllCDMinusExcept(int CDnotremove)
+        {
+            if (CD1.ToString() == CDnotremove.ToString())
+            {
+                CD1++;
+            }
+            if (CD2.ToString() == CDnotremove.ToString())
+            {
+                CD2++;
+            }
+            if (CD3.ToString() == CDnotremove.ToString())
+            {
+                CD3++;
+            }
+            if (CD4.ToString() == CDnotremove.ToString())
+            {
+                CD4++;
+            }
+            if (CD5.ToString() == CDnotremove.ToString())
+            {
+                CD5++;
+            }
+            if (CD6.ToString() == CDnotremove.ToString())
+            {
+                CD6++;
+            }
+            CD1--;
+            CD2--;
+            CD3--;
+            CD4--;
+            CD5--;
+            CD6--;
+            if (CD1 <= 0)
+            {
+                CD1 = 0;
+            }
+
+            if (CD2 <= 0)
+            {
+                CD2 = 0;
+            }
+
+            if (CD3 <= 0)
+            {
+                CD3 = 0;
+            }
+
+            if (CD4 <= 0)
+            {
+                CD4 = 0;
+            }
+
+            if (CD5 <= 0)
+            {
+                CD5 = 0;
+            }
+
+            if (CD6 <= 0)
+            {
+                CD6 = 0;
+            }
+        }
     }
 
 }
