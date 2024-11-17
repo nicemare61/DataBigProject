@@ -16,7 +16,7 @@ namespace Searching
         public int CD4 = 0;
         public int CD5 = 0;
         public int CD6 = 0;
-        public int energy;
+        public int energy = 30;
         public Inventory inventory;
 
         public void Start()
@@ -122,12 +122,7 @@ namespace Searching
 
             for (int a = 0; a < count; a++)
             {
-                if (enemies[a].element == Element.Plant)
-                {enemies[a].TakeDamage(4);}
-                else
-                {
-                 enemies[a].TakeDamage(2);   
-                }
+                enemies[a].TakeDamage(ElementDamage(10,Element.Fire,enemies[a].element));
             }
         }
         public void UseLeafBlade()
@@ -142,12 +137,7 @@ namespace Searching
 
             for (int a = 0; a < count; a++)
             {
-                if (enemies[a].element == Element.Water)
-                {enemies[a].TakeDamage(10);}
-                else
-                {
-                    enemies[a].TakeDamage(2);   
-                }
+                enemies[a].TakeDamage(ElementDamage(10,Element.Plant,enemies[a].element));
             }
         }
         public void UseWaterBall()
@@ -162,12 +152,7 @@ namespace Searching
 
             for (int a = 0; a < count; a++)
             {
-                if (enemies[a].element == Element.Fire)
-                {enemies[a].TakeDamage(4);}
-                else
-                {
-                    enemies[a].TakeDamage(2);   
-                }
+                enemies[a].TakeDamage(ElementDamage(10,Element.Water,enemies[a].element));
             }
         }
 
@@ -298,6 +283,28 @@ namespace Searching
             {
                 CD6 = 0;
             }
+        }
+
+        public int ElementDamage(int Damage ,Element Attack, Element Defense)
+        {
+            if ((Attack == Element.Fire && Defense == Element.Water) ||
+                (Attack == Element.Water && Defense == Element.Plant) ||
+                (Attack == Element.Plant && Defense == Element.Fire))
+            {
+                Damage = Damage / 2;
+            }
+            else if ((Attack == Element.Fire && Defense == Element.Plant) ||
+                (Attack == Element.Water && Defense == Element.Fire) ||
+                (Attack == Element.Plant && Defense == Element.Water))
+            {
+                Damage = Damage * 2;
+            }
+            else
+            {
+                
+            }
+
+            return Damage;
         }
     }
 
