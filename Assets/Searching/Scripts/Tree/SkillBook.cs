@@ -49,7 +49,7 @@ namespace Tree
             fireWall = new Skill("FireWall");
             fireWall.isAvailable = false;
             this.fireSkillTree = new SkillTree(fireBall);
-            //fireWave.nextSkills.Add(fireExplosion);
+            this.fireSkillTree = new SkillTree(fireWall);
             
             waterBall = new Skill("WaterBall");
             waterBall.isAvailable = false;
@@ -58,6 +58,7 @@ namespace Tree
             waterCannon = new Skill("WaterCannon");
             waterCannon.isAvailable = false;
             this.waterSkillTree = new SkillTree(waterBall);
+            this.waterSkillTree = new SkillTree(waterCannon);
             
             leafBlade = new Skill("LeafBlade");
             leafBlade.isAvailable = false;
@@ -66,6 +67,7 @@ namespace Tree
             seedBomb = new Skill("SeedBomb");
             seedBomb.isAvailable = false;
             this.plantSkillTree = new SkillTree(leafBlade);
+            this.plantSkillTree = new SkillTree(seedBomb);
         }
 
         public void Update()

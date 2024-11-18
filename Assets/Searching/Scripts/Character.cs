@@ -185,7 +185,7 @@ namespace Searching
                 if (this is OOPEnemy)
                 {
                     OOPPlayer oopPlayer = new OOPPlayer();
-                    oopPlayer.point++;
+                    oopPlayer.upGradePoint++;
                 }
                 Destroy(gameObject);
             }

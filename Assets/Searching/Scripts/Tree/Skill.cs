@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Tree
@@ -44,7 +45,7 @@ namespace Tree
             Debug.Log($"Skill: {name} available: {isAvailable} unlocked: {isUnlocked}");
             for (int i = 0; i < nextSkills.Count; i++)
             {
-                nextSkills[i].PrintSkillTree();
+                    nextSkills[i].PrintSkillTree();
             }
         }
 

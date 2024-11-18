@@ -17,19 +17,20 @@ namespace Searching
         public int cd5 = 0;
         public int cd6 = 0;
         public int energy = 30;
-        public int point = 5;
+        public int upGradePoint = 5;
         public Inventory inventory;
+        public bool countCreateSkillBook = true;
+        [SerializeField]
+        SkillBook skillBook;
 
         public void Start()
         {
             PrintInfo();
             GetRemainHealth();
-            
         }
 
         public void Update()
         {
-            SkillBook skillBook = new SkillBook();
             if (Input.GetKeyDown(KeyCode.W))
             {
                 Move(Vector2.up);
@@ -54,24 +55,38 @@ namespace Searching
                 energy += 2;
                 AllCDMinus();
             }
-            if (Input.GetKeyDown(KeyCode.J)&& cd1 == 0)
+            if (Input.GetKeyDown(KeyCode.J))
             {
-                UseFireBall();
-                cd1 = 3;
-                AllCDMinusExcept(cd1);
+                if (CheckCondition(5,energy,cd1,skillBook.fireBall))
+                {
+                    UseFireBall();
+                    cd1 = 3;
+                    AllCDMinusExcept(cd1);
+                }
+                else 
+                {
+                    Debug.Log(energy);
+                    Debug.Log($"{cd1},{cd2},{cd3},{cd4},{cd5},{cd6}");
+                }
             }
-            if (Input.GetKeyDown(KeyCode.K)&& cd2 == 0)
+            if (Input.GetKeyDown(KeyCode.K))
             {
-                UseWaterBall();
-                cd2 = 3;
-                AllCDMinusExcept(cd2);
+                if (CheckCondition(5, energy, cd2, skillBook.waterBall))
+                {
+                    UseWaterBall();
+                    cd2 = 3;
+                    AllCDMinusExcept(cd2);
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.L)&& cd3 == 0)
+            if (Input.GetKeyDown(KeyCode.L))
             {
-                UseLeafBlade();
-                cd3 = 3;
-                AllCDMinusExcept(cd3);
+                if (CheckCondition(5, energy, cd3, skillBook.leafBlade))
+                {
+                    UseLeafBlade();
+                    cd3 = 3;
+                    AllCDMinusExcept(cd3);
+                }
             }
         }
 
@@ -194,35 +209,7 @@ namespace Searching
             cd4--;
             cd5--;
             cd6--;
-            if (cd1 <= 0)
-            {
-                cd1 = 0;
-            }
-
-            if (cd2 <= 0)
-            {
-                cd2 = 0;
-            }
-
-            if (cd3 <= 0)
-            {
-                cd3 = 0;
-            }
-
-            if (cd4 <= 0)
-            {
-                cd4 = 0;
-            }
-
-            if (cd5 <= 0)
-            {
-                cd5 = 0;
-            }
-
-            if (cd6 <= 0)
-            {
-                cd6 = 0;
-            }
+            CDWontlessThan0();
         }
         public void AllCDMinusExcept(int CDnotremove)
         {
@@ -250,12 +237,69 @@ namespace Searching
             {
                 cd6++;
             }
-            cd1--;
-            cd2--;
-            cd3--;
-            cd4--;
-            cd5--;
-            cd6--;
+            AllCDMinus();
+        }
+
+        public int ElementDamage(int Damage ,Element Attack, Element Defense)
+        {
+            if ((Attack == Element.Fire && Defense == Element.Water) ||
+                (Attack == Element.Water && Defense == Element.Plant) ||
+                (Attack == Element.Plant && Defense == Element.Fire))
+            {
+                Damage = Damage / 2;
+            }
+            else if ((Attack == Element.Fire && Defense == Element.Plant) ||
+                (Attack == Element.Water && Defense == Element.Fire) ||
+                (Attack == Element.Plant && Defense == Element.Water))
+            {
+                Damage = Damage * 2;
+            }
+            
+            return Damage;
+        }
+
+        public void DebugUpSkill(string skillName ,int pointsToUp, int points)
+        {
+            if (pointsToUp >= points)
+            {
+                points -= pointsToUp;
+                Debug.Log(skillName + " is Unlocked");
+            }
+        }
+
+        public void LearnSkill(Skill skill)
+        {
+            skill.isAvailable = true;
+            skill.isUnlocked = true;
+            Debug.Log($"{skill.name} is unlocked");
+        }
+
+        public bool CheckCondition(int energyUse ,int energyTotal,int cdTurn,Skill skill)
+        {
+            bool result = false;
+            if (cdTurn == 0 && energyUse <= energyTotal && skill.isAvailable && skill.isUnlocked)
+            {
+                result = true;
+            }
+            else if(!skill.isAvailable || !skill.isUnlocked)
+            {
+                Debug.Log($"can't use {skill.name} cause your skill is not upgraded");
+            }
+            else if(energyUse > energyTotal)
+            {
+                Debug.Log($"can't use {skill.name} cause your energy");
+            }
+            else if(cdTurn > 0)
+            {
+                Debug.Log($"can't use {skill.name} cause your cd skill");
+            }
+            
+            return result;
+
+        }
+
+        public void CDWontlessThan0()
+        {
             if (cd1 <= 0)
             {
                 cd1 = 0;
@@ -287,23 +331,34 @@ namespace Searching
             }
         }
 
-        public int ElementDamage(int Damage ,Element Attack, Element Defense)
+        public void FireBall()
         {
-            if ((Attack == Element.Fire && Defense == Element.Water) ||
-                (Attack == Element.Water && Defense == Element.Plant) ||
-                (Attack == Element.Plant && Defense == Element.Fire))
-            {
-                Damage = Damage / 2;
-            }
-            else if ((Attack == Element.Fire && Defense == Element.Plant) ||
-                (Attack == Element.Water && Defense == Element.Fire) ||
-                (Attack == Element.Plant && Defense == Element.Water))
-            {
-                Damage = Damage * 2;
-            }
-            
-            return Damage;
+            LearnSkill(skillBook.fireBall);
+        }
+
+        public void WaterBall()
+        {
+            LearnSkill(skillBook.waterBall);
+        }
+
+        public void LeafBlade()
+        {
+            LearnSkill(skillBook.leafBlade);
+        }
+
+        public void FireWall()
+        {
+            LearnSkill(skillBook.fireWall);
+        }
+
+        public void WaterCannon()
+        {
+            LearnSkill(skillBook.waterCannon);
+        }
+
+        public void SeedBomb()
+        {
+            LearnSkill(skillBook.seedBomb);
         }
     }
-
 }
