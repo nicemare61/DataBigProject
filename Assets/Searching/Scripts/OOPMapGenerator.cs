@@ -123,7 +123,7 @@ namespace Searching
                 int y = Random.Range(0, Y);
                 if (mapdata[x, y] == empty)
                 {
-                    PlaceItem(x, y);
+                    //PlaceItem(x, y);
                     count++;
                 }
             }
