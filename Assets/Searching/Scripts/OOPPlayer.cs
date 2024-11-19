@@ -20,6 +20,7 @@ namespace Searching
         public int upGradePoint = 5;
         public Inventory inventory;
         public bool countCreateSkillBook = true;
+        
         [SerializeField]
         SkillBook skillBook;
         [SerializeField]
