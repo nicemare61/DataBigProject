@@ -22,6 +22,8 @@ namespace Searching
         public bool countCreateSkillBook = true;
         [SerializeField]
         SkillBook skillBook;
+        [SerializeField]
+        SpriteRenderer spriteRenderer;
 
         public void Start()
         {
@@ -48,12 +50,14 @@ namespace Searching
                 Move(Vector2.left);
                 energy += 2;
                 AllCDMinus();
+                spriteRenderer.flipX = true;
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
                 Move(Vector2.right);
                 energy += 2;
                 AllCDMinus();
+                spriteRenderer.flipX = false;
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
@@ -62,11 +66,6 @@ namespace Searching
                     UseFireBall();
                     cd1 = 3;
                     AllCDMinusExcept(cd1);
-                }
-                else 
-                {
-                    Debug.Log(energy);
-                    Debug.Log($"{cd1},{cd2},{cd3},{cd4},{cd5},{cd6}");
                 }
             }
             if (Input.GetKeyDown(KeyCode.K))

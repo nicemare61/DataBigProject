@@ -110,7 +110,7 @@ namespace Searching
                 int y = Random.Range(0, Y);
                 if (mapdata[x, y] == 0)
                 {
-                    PlaceDemonWall(x, y);
+                    //PlaceDemonWall(x, y);
                     count++;
                 }
             }

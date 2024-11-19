@@ -31,7 +31,6 @@ namespace Searching
 
         public override void Hit()
         {
-            mapGenerator.player.Attack(this);
             this.Attack(mapGenerator.player);
         }
 
