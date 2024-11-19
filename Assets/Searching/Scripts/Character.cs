@@ -39,8 +39,7 @@ namespace Searching
             int toY = (int)(positionY + direction.y);
             int fromX = positionX;
             int fromY = positionY;
-            Debug.Log(toX);
-            Debug.Log(toY);
+            
 
             if (HasPlacement(toX, toY))
             {

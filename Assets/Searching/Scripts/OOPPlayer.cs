@@ -19,7 +19,7 @@ namespace Searching
         public int energy = 30;
         public int upGradePoint = 5;
         public Inventory inventory;
-        public bool countCreateSkillBook = true;
+       
         
         [SerializeField]
         SkillBook skillBook;
@@ -37,28 +37,28 @@ namespace Searching
             if (Input.GetKeyDown(KeyCode.W))
             {
                 Move(Vector2.up);
-                energy += 2;
                 AllCDMinus();
+                EnergyRegen();
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
                 Move(Vector2.down);
-                energy += 2;
                 AllCDMinus();
+                EnergyRegen();
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
                 Move(Vector2.left);
-                energy += 2;
                 AllCDMinus();
                 spriteRenderer.flipX = true;
+                EnergyRegen();
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
                 Move(Vector2.right);
-                energy += 2;
                 AllCDMinus();
                 spriteRenderer.flipX = false;
+                EnergyRegen();
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
@@ -67,6 +67,7 @@ namespace Searching
                     UseFireBall();
                     cd1 = 3;
                     AllCDMinusExcept(cd1);
+                    Debug.Log(energy);
                 }
             }
             if (Input.GetKeyDown(KeyCode.K))
@@ -76,6 +77,7 @@ namespace Searching
                     UseWaterBall();
                     cd2 = 3;
                     AllCDMinusExcept(cd2);
+                    Debug.Log(energy);
                 }
             }
 
@@ -86,6 +88,7 @@ namespace Searching
                     UseLeafBlade();
                     cd3 = 3;
                     AllCDMinusExcept(cd3);
+                    Debug.Log(energy);
                 }
             }
         }
@@ -359,6 +362,16 @@ namespace Searching
         public void SeedBomb()
         {
             LearnSkill(skillBook.seedBomb);
+        }
+
+        public void EnergyRegen()
+        {
+            energy += 2;
+            if (energy > 30)
+            {
+                energy = 30;
+            }
+            Debug.Log($"energy : {energy}");
         }
     }
 }
