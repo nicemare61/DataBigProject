@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tree;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
@@ -27,6 +28,9 @@ namespace Searching
         SkillBook skillBook;
         [SerializeField]
         SpriteRenderer spriteRenderer;
+
+        [SerializeField] private GameObject windowGameObject;
+        [SerializeField] bool windowActive = false;
 
         public void Start()
         {
@@ -94,6 +98,16 @@ namespace Searching
                     AllCDMinusExcept(cd3);
                     Debug.Log(energy);
                 }
+            }
+
+            if (Input.GetKey(KeyCode.P))
+            {
+                windowGameObject.SetActive(true);
+            }
+
+            if (Input.GetKeyUp(KeyCode.P))
+            {
+                windowGameObject.SetActive(false);
             }
         }
 
@@ -266,13 +280,21 @@ namespace Searching
             return Damage;
         }
 
-        public void DebugUpSkill(string skillName ,int pointsToUp, int points)
+        public bool DebugUpSkill(Skill skill ,int pointsToUp, int points)
         {
+            bool CanUpgrade;
             if (pointsToUp >= points)
             {
                 points -= pointsToUp;
-                Debug.Log(skillName + " is Unlocked");
+                Debug.Log(skill.name + " is Unlocked");
+                CanUpgrade = true;
             }
+            else
+            {
+                Debug.Log(skill.name + " can't unlocked you don't have enough points");
+                CanUpgrade = false;
+            }
+            return CanUpgrade;
         }
 
         public void LearnSkill(Skill skill)
@@ -291,7 +313,7 @@ namespace Searching
             }
             else if(!skill.isAvailable || !skill.isUnlocked)
             {
-                Debug.Log($"can't use {skill.name} cause your skill is not upgraded");
+                Debug.Log($"can't use {skill.name} cause your skill is not unlocked or unavailable");
             }
             else if(energyUse > energyTotal)
             {
@@ -341,32 +363,50 @@ namespace Searching
 
         public void FireBall()
         {
-            LearnSkill(skillBook.fireBall);
+            if (DebugUpSkill(skillBook.fireBall, 5, upGradePoint))
+            {
+                LearnSkill(skillBook.fireBall);
+            }
         }
 
         public void WaterBall()
         {
-            LearnSkill(skillBook.waterBall);
+            if (DebugUpSkill(skillBook.waterBall, 5, upGradePoint))
+            {
+                LearnSkill(skillBook.waterBall);
+            }
         }
 
         public void LeafBlade()
         {
-            LearnSkill(skillBook.leafBlade);
+            if (DebugUpSkill(skillBook.leafBlade, 5, upGradePoint))
+            {
+                LearnSkill(skillBook.leafBlade);
+            }
         }
 
         public void FireWall()
         {
-            LearnSkill(skillBook.fireWall);
+            if (DebugUpSkill(skillBook.fireWall, 10, upGradePoint))
+            {
+                LearnSkill(skillBook.fireWall);
+            }
         }
 
         public void WaterCannon()
         {
-            LearnSkill(skillBook.waterCannon);
+            if (DebugUpSkill(skillBook.waterCannon, 10, upGradePoint))
+            {
+                LearnSkill(skillBook.waterCannon);
+            }
         }
 
         public void SeedBomb()
         {
-            LearnSkill(skillBook.seedBomb);
+            if (DebugUpSkill(skillBook.seedBomb, 10, upGradePoint))
+            {
+                LearnSkill(skillBook.seedBomb);
+            }
         }
 
         public void EnergyRegen()
@@ -392,5 +432,6 @@ namespace Searching
             }
             return result;
         }
+        
     }
 }
