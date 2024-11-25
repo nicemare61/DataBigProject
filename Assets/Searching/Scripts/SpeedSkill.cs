@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Searching;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpeedSkill : MonoBehaviour
@@ -12,6 +13,7 @@ public class SpeedSkill : MonoBehaviour
     OOPPlayer oopPlayer;
     
     [SerializeField] private Element element;
+    [SerializeField] private bool isLargeSkill;
     
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -35,12 +37,12 @@ public class SpeedSkill : MonoBehaviour
 
     void Update()
     {
-        if (currentSideSkill == false)
+        if (!currentSideSkill && !isLargeSkill)
         {
             transform.position += -transform.right * speed * Time.deltaTime;
             spriteRenderer.flipX = true;
         }
-        else if(currentSideSkill)
+        else if(currentSideSkill && !isLargeSkill)
         {
             transform.position += transform.right * speed * Time.deltaTime;
             spriteRenderer.flipX = false;

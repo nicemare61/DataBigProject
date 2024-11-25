@@ -137,7 +137,7 @@ namespace Searching
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                if (skillBook.fireWall.isUnlocked)
+                if (skillBook.seedBomb.isUnlocked)
                 {
                     if (CheckCondition(8, energy, cd6, skillBook.seedBomb))
                     {

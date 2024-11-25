@@ -45,7 +45,7 @@ namespace Searching
 
         public void UpdatePointHUD()
         {
-            pointTxt.text = $"Point : {point}/5";
+            pointTxt.text = $"Point : {point}";
         }
 
         
