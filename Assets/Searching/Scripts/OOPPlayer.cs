@@ -24,6 +24,16 @@ namespace Searching
        
        [SerializeField]
        GameObject fireballPrefab;
+       [SerializeField]
+       GameObject waterballPrefab;
+       [SerializeField]
+       GameObject leafBladePrefab;
+       [SerializeField]
+       GameObject firewallPrefab;
+       [SerializeField]
+       GameObject waterCannonPrefab;
+       [SerializeField]  
+       GameObject seedBombPrefab;
         [SerializeField]
         SkillBook skillBook;
         [SerializeField]
@@ -70,33 +80,72 @@ namespace Searching
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
-                if (CheckCondition(5,energy,cd1,skillBook.fireBall))
+                if (skillBook.fireWall.isUnlocked)
                 {
-                    UseFireBall();
-                    cd1 = 3;
-                    AllCDMinusExcept(cd1);
-                    Debug.Log(energy);
+                    if (CheckCondition(10, energy, cd4, skillBook.fireWall))
+                    {
+                        UseFireWall();
+                        cd4 = 5;
+                        AllCDMinusExcept(cd4);
+                        Debug.Log(energy);
+                    }
+                }
+                else
+                {
+                    if (CheckCondition(5, energy, cd1, skillBook.fireBall))
+                    {
+                        UseFireBall();
+                        cd1 = 3;
+                        AllCDMinusExcept(cd1);
+                        Debug.Log(energy);
+                    }
                 }
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
-                if (CheckCondition(5, energy, cd2, skillBook.waterBall))
+                if (skillBook.waterCannon.isUnlocked)
                 {
-                    UseWaterBall();
-                    cd2 = 3;
-                    AllCDMinusExcept(cd2);
-                    Debug.Log(energy);
+                    if (CheckCondition(12, energy, cd5, skillBook.waterCannon))
+                    {
+                        UseWaterCannon();
+                        cd5 = 5;
+                        AllCDMinusExcept(cd5);
+                        Debug.Log(energy);
+                    }
+                }
+                else
+                {
+                    if (CheckCondition(5, energy, cd2, skillBook.waterBall))
+                    {
+                        UseWaterBall();
+                        cd2 = 3;
+                        AllCDMinusExcept(cd2);
+                        Debug.Log(energy);
+                    }
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                if (CheckCondition(5, energy, cd3, skillBook.leafBlade))
+                if (skillBook.fireWall.isUnlocked)
                 {
-                    UseLeafBlade();
-                    cd3 = 3;
-                    AllCDMinusExcept(cd3);
-                    Debug.Log(energy);
+                    if (CheckCondition(8, energy, cd6, skillBook.seedBomb))
+                    {
+                        UseSeedBomb();
+                        cd6 = 5;
+                        AllCDMinusExcept(cd6);
+                        Debug.Log(energy);
+                    }
+                }
+                else
+                {
+                    if (CheckCondition(5, energy, cd3, skillBook.leafBlade))
+                    {
+                        UseLeafBlade();
+                        cd3 = 3;
+                        AllCDMinusExcept(cd3);
+                        Debug.Log(energy);
+                    }
                 }
             }
 
@@ -166,32 +215,84 @@ namespace Searching
         }
         public void UseLeafBlade()
         {
+            Instantiate(leafBladePrefab, this.transform.position, Quaternion.identity);
             energy-= 5;
-            OOPEnemy[] enemies = SortEnemiesByRemainningHealth1();
-            int count = 1;
-            if (count > enemies.Length)
-            {
-                count = enemies.Length;
-            }
-
-            for (int a = 0; a < count; a++)
-            {
-                enemies[a].TakeDamage(ElementDamage(10,Element.Plant,enemies[a].element));
-            }
         }
         public void UseWaterBall()
         {
+            Instantiate(waterballPrefab, this.transform.position, Quaternion.identity);
             energy -= 5;
-            OOPEnemy[] enemies = SortEnemiesByRemainningHealth1();
-            int count = 1;
-            if (count > enemies.Length)
-            {
-                count = enemies.Length;
-            }
+        }
 
-            for (int a = 0; a < count; a++)
+        public void UseFireWall()
+        {
+            if (spriteRenderer.flipX == false)
             {
-                enemies[a].TakeDamage(ElementDamage(10,Element.Water,enemies[a].element));
+                for (int a = 1; a < 5; a++)
+                {
+                    Instantiate(firewallPrefab, this.transform.position+(Vector3.right*a), Quaternion.identity);
+                }
+            }
+            else if (spriteRenderer.flipX == true)
+            {
+                for (int a = 1; a < 5; a++)
+                {
+                    Instantiate(firewallPrefab, this.transform.position+(Vector3.left*a), Quaternion.identity);
+                }
+            }
+        }
+
+        public void UseWaterCannon()
+        {
+            if (spriteRenderer.flipX == false)
+            {
+                for (int a = 1; a < 6; a++) //right
+                {
+                    Instantiate(waterCannonPrefab, this.transform.position + (Vector3.right*a), Quaternion.identity);
+                }
+
+                for (int a = 1; a < 4; a++)
+                {
+                    Instantiate(waterCannonPrefab, this.transform.position + new Vector3(a,1), Quaternion.identity);
+                    Instantiate(waterCannonPrefab, this.transform.position + new Vector3(a,-1), Quaternion.identity);
+                }
+                Instantiate(waterCannonPrefab, this.transform.position+new Vector3(2,2), Quaternion.identity);
+                Instantiate(waterCannonPrefab, this.transform.position+new Vector3(2,-2), Quaternion.identity);
+            }
+            else if (spriteRenderer.flipX == true)
+            {
+                for (int a = 1; a < 6; a++) //left
+                {
+                    Instantiate(waterCannonPrefab, this.transform.position + (Vector3.left*a), Quaternion.identity);
+                }
+
+                for (int a = 1; a < 4; a++)
+                {
+                    Instantiate(waterCannonPrefab, this.transform.position + new Vector3(-a,1), Quaternion.identity);
+                    Instantiate(waterCannonPrefab, this.transform.position + new Vector3(-a,-1), Quaternion.identity);
+                }
+                Instantiate(waterCannonPrefab, this.transform.position+new Vector3(-2,2), Quaternion.identity);
+                Instantiate(waterCannonPrefab, this.transform.position+new Vector3(-2,-2), Quaternion.identity);
+            }
+        }
+
+        public void UseSeedBomb()
+        {
+            if (spriteRenderer.flipX == false)
+            {
+                for (int y = -1; y < 2; y++)
+                {
+                    Instantiate(seedBombPrefab, this.transform.position + new Vector3(1, y), Quaternion.identity);
+                }
+                Instantiate(seedBombPrefab, this.transform.position+ new Vector3(2,0), Quaternion.identity);
+            }
+            if (spriteRenderer.flipX == false)
+            {
+                for (int y = -1; y < 2; y++)
+                {
+                    Instantiate(seedBombPrefab, this.transform.position + new Vector3(-1, y), Quaternion.identity);
+                }
+                Instantiate(seedBombPrefab, this.transform.position+ new Vector3(-2,0), Quaternion.identity);
             }
         }
 
