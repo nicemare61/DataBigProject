@@ -4529,6 +4529,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3296823376843599221, guid: bc6c26fcca6e3d24ca9ceebeb86a9581, type: 3}
     - target: {fileID: 5615206909734415387, guid: 4c033ef69eb269849bab9de975c465ed, type: 3}
+      propertyPath: leafBladePrefab
+      value: 
+      objectReference: {fileID: 3296823376843599221, guid: bc940531daa56dc46a86607758dc6de1, type: 3}
+    - target: {fileID: 5615206909734415387, guid: 4c033ef69eb269849bab9de975c465ed, type: 3}
+      propertyPath: waterballPrefab
+      value: 
+      objectReference: {fileID: 3296823376843599221, guid: 4af66ebe5a2d5ce40b1cccf5e37877f0, type: 3}
+    - target: {fileID: 5615206909734415387, guid: 4c033ef69eb269849bab9de975c465ed, type: 3}
       propertyPath: windowGameObject
       value: 
       objectReference: {fileID: 1931479518}

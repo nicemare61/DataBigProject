@@ -207,6 +207,7 @@ MonoBehaviour:
   - {fileID: 127736, guid: 4cdf8ac85eff446d0a8fefbdc8c6569f, type: 3}
   - {fileID: 110520, guid: 5535fd6cd705e4a79a1d5a4f114de5dc, type: 3}
   - {fileID: 110520, guid: c18e9692903814865aa9a855aaa66df5, type: 3}
+  element: 1
   spriteRenderer: {fileID: 2800707698869443194}
 --- !u!50 &-1715009803118253983
 Rigidbody2D:

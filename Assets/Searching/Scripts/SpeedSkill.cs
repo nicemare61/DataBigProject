@@ -11,6 +11,8 @@ public class SpeedSkill : MonoBehaviour
     private GameObject[] floorPrefab;
     OOPPlayer oopPlayer;
     
+    [SerializeField] private Element element;
+    
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
@@ -55,7 +57,23 @@ public class SpeedSkill : MonoBehaviour
         if (other.transform.tag == "Enemy")
         {
             Destroy(this.gameObject);
-            Debug.Log("Hit Enemy");
+            
+            if (other.GetComponent<Character>().element == element)
+            {
+                other.GetComponent<Character>().TakeDamage(10);
+            }
+            else if (other.GetComponent<Character>().element == Element.Fire && element == Element.Plant ||
+                     other.GetComponent<Character>().element == Element.Plant && element == Element.Water ||
+                     other.GetComponent<Character>().element == Element.Water && element == Element.Fire)
+            {
+                other.GetComponent<Character>().TakeDamage(5);
+            }
+            else if (other.GetComponent<Character>().element == Element.Plant && element == Element.Fire ||
+                     other.GetComponent<Character>().element == Element.Water && element == Element.Plant ||
+                     other.GetComponent<Character>().element == Element.Fire && element == Element.Water)
+            {
+                other.GetComponent<Character>().TakeDamage(20);
+            }
         }
 
         if (other.transform.tag == "Wall")
