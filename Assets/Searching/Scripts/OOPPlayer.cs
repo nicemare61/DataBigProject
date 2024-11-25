@@ -19,8 +19,18 @@ namespace Searching
         public int cd6 = 0;
         public int energy = 30;
         public int upGradePoint = 5;
+        public int UpGradePoint
+        {
+            get { return upGradePoint; }
+            set
+            {
+                upGradePoint = value; 
+                exit.UpdatePointHUD();
+            }
+        }
         public Inventory inventory;
-        public bool isRight = true; 
+        public bool isRight = true;
+        private OOPExit exit;
        
        [SerializeField]
        GameObject fireballPrefab;
@@ -40,7 +50,7 @@ namespace Searching
         SpriteRenderer spriteRenderer;
 
         [SerializeField] private GameObject windowGameObject;
-        [SerializeField] bool windowActive = false;
+        [SerializeField] private bool windowActive;
 
         public void Start()
         {
@@ -149,14 +159,18 @@ namespace Searching
                 }
             }
 
-            if (Input.GetKey(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                windowGameObject.SetActive(true);
-            }
-
-            if (Input.GetKeyUp(KeyCode.P))
-            {
-                windowGameObject.SetActive(false);
+                if (!windowActive)
+                {
+                    windowGameObject.SetActive(true);
+                    windowActive = true;
+                }
+                else
+                {
+                    windowGameObject.SetActive(false);
+                    windowActive = false;
+                }
             }
         }
 
@@ -464,49 +478,103 @@ namespace Searching
 
         public void FireBall()
         {
-            if (DebugUpSkill(skillBook.fireBall, 5, upGradePoint))
+            if (DebugUpSkill(skillBook.fireBall, 5, upGradePoint) && upGradePoint >= 5)
             {
                 LearnSkill(skillBook.fireBall);
+                upGradePoint -= 5;
+                if (upGradePoint < 0)
+                {
+                    upGradePoint = 0;
+                }
+            }
+            else
+            {
+                Debug.Log("Not Enough Skill Points!");
             }
         }
 
         public void WaterBall()
         {
-            if (DebugUpSkill(skillBook.waterBall, 5, upGradePoint))
+            if (DebugUpSkill(skillBook.waterBall, 5, upGradePoint) && upGradePoint >= 5)
             {
                 LearnSkill(skillBook.waterBall);
+                upGradePoint -= 5;
+                if (upGradePoint < 0)
+                {
+                    upGradePoint = 0;
+                }
+            }
+            else
+            {
+                Debug.Log("Not Enough Skill Points!");
             }
         }
 
         public void LeafBlade()
         {
-            if (DebugUpSkill(skillBook.leafBlade, 5, upGradePoint))
+            if (DebugUpSkill(skillBook.leafBlade, 5, upGradePoint) && upGradePoint >= 5)
             {
                 LearnSkill(skillBook.leafBlade);
+                upGradePoint -= 5;
+                if (upGradePoint < 0)
+                {
+                    upGradePoint = 0;
+                }
+            }
+            else
+            {
+                Debug.Log("Not Enough Skill Points!");
             }
         }
 
         public void FireWall()
         {
-            if (DebugUpSkill(skillBook.fireWall, 10, upGradePoint))
+            if (DebugUpSkill(skillBook.fireWall, 10, upGradePoint) && upGradePoint >= 10)
             {
                 LearnSkill(skillBook.fireWall);
+                upGradePoint -= 10;
+                if (upGradePoint < 0)
+                {
+                    upGradePoint = 0;
+                }
+            }
+            else
+            {
+                Debug.Log("Not Enough Skill Points!");
             }
         }
 
         public void WaterCannon()
         {
-            if (DebugUpSkill(skillBook.waterCannon, 10, upGradePoint))
+            if (DebugUpSkill(skillBook.waterCannon, 10, upGradePoint) && upGradePoint >= 10)
             {
                 LearnSkill(skillBook.waterCannon);
+                upGradePoint -= 10;
+                if (upGradePoint < 0)
+                {
+                    upGradePoint = 0;
+                }
+            }
+            else
+            {
+                Debug.Log("Not Enough Skill Points!");
             }
         }
 
         public void SeedBomb()
         {
-            if (DebugUpSkill(skillBook.seedBomb, 10, upGradePoint))
+            if (DebugUpSkill(skillBook.seedBomb, 10, upGradePoint) && upGradePoint >= 10)
             {
                 LearnSkill(skillBook.seedBomb);
+                upGradePoint -= 10;
+                if (upGradePoint < 0)
+                {
+                    upGradePoint = 0;
+                }
+            }
+            else
+            {
+                Debug.Log("Not Enough Skill Points!");
             }
         }
 

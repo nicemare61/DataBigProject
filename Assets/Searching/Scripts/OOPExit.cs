@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 namespace Searching
@@ -8,8 +12,44 @@ namespace Searching
 
     public class OOPExit : Identity
     {
-        public string unlockKey;
+        /*public string unlockKey;*/
+        public TMP_Text pointTxt;
         public GameObject YouWin;
+        public bool isGameWon;
+
+        private OOPPlayer player;
+        private int point = 0;
+        public int Point
+        {
+            get { return point;}
+            set
+            {
+                point = value; 
+                UpdatePointHUD();
+            }
+        }
+
+        private void Awake()
+        {
+            UpdatePointHUD();
+        }
+
+        private void Update()
+        {
+            if (isGameWon)
+            {
+                YouWin.SetActive(true);
+            }
+
+        }
+
+        public void UpdatePointHUD()
+        {
+            pointTxt.text = $"Point : {point}/5";
+        }
+
+        
+
 
         /*public override void Hit()
         {
