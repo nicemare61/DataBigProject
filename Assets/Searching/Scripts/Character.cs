@@ -21,8 +21,6 @@ namespace Searching
         protected bool isAlive;
         protected bool isFreeze;
         
-        private OOPExit exit;
-        
         // Start is called before the first frame update
         protected void GetRemainHealth()
         {
@@ -191,7 +189,8 @@ namespace Searching
                 }
                 if (this is OOPPlayer)
                 {
-                    exit.YouLose.SetActive(true);
+                    OOPExit oopExit = FindObjectOfType<OOPExit>();
+                    oopExit.YouLose.SetActive(true);
                 }
                 Destroy(gameObject);
             }

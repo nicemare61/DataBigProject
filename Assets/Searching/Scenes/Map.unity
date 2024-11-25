@@ -3848,7 +3848,7 @@ MonoBehaviour:
   mapGenerator: {fileID: 0}
   pointTxt: {fileID: 1446712291}
   YouWin: {fileID: 1715613771}
-  YouLose: {fileID: 0}
+  YouLose: {fileID: 539000639}
 --- !u!1 &2031308327
 GameObject:
   m_ObjectHideFlags: 0
