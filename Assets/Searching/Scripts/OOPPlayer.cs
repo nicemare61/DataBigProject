@@ -19,8 +19,10 @@ namespace Searching
         public int energy = 30;
         public int upGradePoint = 5;
         public Inventory inventory;
+        public bool isRight = true; 
        
-        
+       [SerializeField]
+       GameObject fireballPrefab;
         [SerializeField]
         SkillBook skillBook;
         [SerializeField]
@@ -51,6 +53,7 @@ namespace Searching
                 Move(Vector2.left);
                 AllCDMinus();
                 spriteRenderer.flipX = true;
+                isRight = false;
                 EnergyRegen();
             }
             if (Input.GetKeyDown(KeyCode.D))
@@ -59,6 +62,7 @@ namespace Searching
                 AllCDMinus();
                 spriteRenderer.flipX = false;
                 EnergyRegen();
+                isRight = true;
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
@@ -133,7 +137,8 @@ namespace Searching
         public void UseFireBall()
         {
             energy-= 5;
-            OOPEnemy[] enemies = SortEnemiesByRemainningHealth1();
+            Instantiate(fireballPrefab, this.transform.position, Quaternion.identity);
+           /* OOPEnemy[] enemies = SortEnemiesByRemainningHealth1();
             int count = 1;
             if (count > enemies.Length)
             {
@@ -143,7 +148,7 @@ namespace Searching
             for (int a = 0; a < count; a++)
             {
                 enemies[a].TakeDamage(ElementDamage(10,Element.Fire,enemies[a].element));
-            }
+            }*/
         }
         public void UseLeafBlade()
         {
@@ -372,6 +377,20 @@ namespace Searching
                 energy = 30;
             }
             Debug.Log($"energy : {energy}");
+        }
+
+        public int FaceSkill(SpriteRenderer spriteRenderer)
+        {
+            int result = 0;
+            if (spriteRenderer.flipX)
+            {
+                result = 1;
+            }
+            else if (!spriteRenderer.flipX)
+            {
+                result = -1;
+            }
+            return result;
         }
     }
 }

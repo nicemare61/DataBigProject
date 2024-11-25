@@ -145,7 +145,7 @@ MonoBehaviour:
   Y: 8
   player: {fileID: 0}
   playerStartPos: {x: 0, y: 0}
-  Exit: {fileID: 0}
+  waveCount: 1
   floorsPrefab:
   - {fileID: 106160, guid: 038998774947c4a8fa170d5b4492a7dd, type: 3}
   - {fileID: 137908, guid: 41775b29042354678bcd58bb1a75871e, type: 3}
@@ -185,12 +185,13 @@ MonoBehaviour:
   itemKeyCount: 1
   itemFireStormCount: 2
   enemyCount: 1
+  exit: {fileID: 0}
+  enemyAlive: 0
   playerBlock: 99
   empty: 0
   demonWall: 1
   potion: 2
   bonuesPotion: 3
-  exit: 4
   key: 5
   enemy: 6
   fireStorm: 7

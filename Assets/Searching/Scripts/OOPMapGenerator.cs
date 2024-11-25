@@ -140,7 +140,7 @@ namespace Searching
                     count++;
                 }
             }*/
-            
+            enemies = new OOPEnemy[X, Y];
             GenerateEnemy(count);
             
             fireStorms = new OOPFireStormItem[X, Y];

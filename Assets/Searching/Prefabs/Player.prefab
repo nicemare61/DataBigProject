@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5615206909734415387}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,8 +50,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -103,5 +101,18 @@ MonoBehaviour:
   positionX: 0
   positionY: 0
   mapGenerator: {fileID: 0}
-  energy: 20
+  health: 20
   AttackPoint: 10
+  element: 0
+  cd1: 0
+  cd2: 0
+  cd3: 0
+  cd4: 0
+  cd5: 0
+  cd6: 0
+  energy: 30
+  upGradePoint: 5
+  inventory: {fileID: 0}
+  fireballPrefab: {fileID: 0}
+  skillBook: {fileID: 0}
+  spriteRenderer: {fileID: 5267956022897430819}
