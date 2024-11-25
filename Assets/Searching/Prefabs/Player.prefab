@@ -113,6 +113,14 @@ MonoBehaviour:
   energy: 30
   upGradePoint: 5
   inventory: {fileID: 0}
+  isRight: 1
   fireballPrefab: {fileID: 0}
+  waterballPrefab: {fileID: 0}
+  leafBladePrefab: {fileID: 0}
+  firewallPrefab: {fileID: 0}
+  waterCannonPrefab: {fileID: 0}
+  seedBombPrefab: {fileID: 0}
   skillBook: {fileID: 0}
   spriteRenderer: {fileID: 5267956022897430819}
+  windowGameObject: {fileID: 0}
+  windowActive: 0

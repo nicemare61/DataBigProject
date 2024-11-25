@@ -20,7 +20,6 @@ public class UIUpdate : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("Yes");
             exit.Point = player.UpGradePoint;
             yield return new WaitForSeconds(1);
         }

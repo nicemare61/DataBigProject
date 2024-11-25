@@ -15,7 +15,7 @@ namespace Searching
         /*public string unlockKey;*/
         public TMP_Text pointTxt;
         public GameObject YouWin;
-        public bool isGameWon;
+        public GameObject YouLose;
 
         private OOPPlayer player;
         private int point = 0;
@@ -32,15 +32,6 @@ namespace Searching
         private void Awake()
         {
             UpdatePointHUD();
-        }
-
-        private void Update()
-        {
-            if (isGameWon)
-            {
-                YouWin.SetActive(true);
-            }
-
         }
 
         public void UpdatePointHUD()

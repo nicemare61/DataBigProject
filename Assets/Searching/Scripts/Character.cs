@@ -21,6 +21,8 @@ namespace Searching
         protected bool isAlive;
         protected bool isFreeze;
         
+        private OOPExit exit;
+        
         // Start is called before the first frame update
         protected void GetRemainHealth()
         {
@@ -184,8 +186,12 @@ namespace Searching
             {
                 if (this is OOPEnemy)
                 {
-                    OOPPlayer oopPlayer = new OOPPlayer();
-                    oopPlayer.upGradePoint++;
+                    OOPPlayer oopPlayer = FindObjectOfType<OOPPlayer>();
+                    oopPlayer.UpGradePoint++;
+                }
+                if (this is OOPPlayer)
+                {
+                    exit.YouLose.SetActive(true);
                 }
                 Destroy(gameObject);
             }

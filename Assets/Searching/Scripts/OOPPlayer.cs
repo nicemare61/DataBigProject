@@ -18,14 +18,13 @@ namespace Searching
         public int cd5 = 0;
         public int cd6 = 0;
         public int energy = 30;
-        public int upGradePoint = 5;
+        public int upGradePoint = 0;
         public int UpGradePoint
         {
             get { return upGradePoint; }
             set
             {
                 upGradePoint = value; 
-                exit.UpdatePointHUD();
             }
         }
         public Inventory inventory;
@@ -172,6 +171,8 @@ namespace Searching
                     windowActive = false;
                 }
             }
+            
+            CheckDead();
         }
 
         public void Attack(OOPEnemy _enemy)
@@ -398,9 +399,8 @@ namespace Searching
         public bool DebugUpSkill(Skill skill ,int pointsToUp, int points)
         {
             bool CanUpgrade;
-            if (pointsToUp >= points)
+            if (pointsToUp <= points)
             {
-                points -= pointsToUp;
                 Debug.Log(skill.name + " is Unlocked");
                 CanUpgrade = true;
             }
@@ -478,7 +478,7 @@ namespace Searching
 
         public void FireBall()
         {
-            if (DebugUpSkill(skillBook.fireBall, 5, upGradePoint) && upGradePoint >= 5)
+            if (DebugUpSkill(skillBook.fireBall, 5, upGradePoint))
             {
                 LearnSkill(skillBook.fireBall);
                 upGradePoint -= 5;
@@ -487,15 +487,11 @@ namespace Searching
                     upGradePoint = 0;
                 }
             }
-            else
-            {
-                Debug.Log("Not Enough Skill Points!");
-            }
         }
 
         public void WaterBall()
         {
-            if (DebugUpSkill(skillBook.waterBall, 5, upGradePoint) && upGradePoint >= 5)
+            if (DebugUpSkill(skillBook.waterBall, 5, upGradePoint))
             {
                 LearnSkill(skillBook.waterBall);
                 upGradePoint -= 5;
@@ -504,15 +500,11 @@ namespace Searching
                     upGradePoint = 0;
                 }
             }
-            else
-            {
-                Debug.Log("Not Enough Skill Points!");
-            }
         }
 
         public void LeafBlade()
         {
-            if (DebugUpSkill(skillBook.leafBlade, 5, upGradePoint) && upGradePoint >= 5)
+            if (DebugUpSkill(skillBook.leafBlade, 5, upGradePoint))
             {
                 LearnSkill(skillBook.leafBlade);
                 upGradePoint -= 5;
@@ -521,15 +513,11 @@ namespace Searching
                     upGradePoint = 0;
                 }
             }
-            else
-            {
-                Debug.Log("Not Enough Skill Points!");
-            }
         }
 
         public void FireWall()
         {
-            if (DebugUpSkill(skillBook.fireWall, 10, upGradePoint) && upGradePoint >= 10)
+            if (DebugUpSkill(skillBook.fireWall, 10, upGradePoint))
             {
                 LearnSkill(skillBook.fireWall);
                 upGradePoint -= 10;
@@ -538,15 +526,11 @@ namespace Searching
                     upGradePoint = 0;
                 }
             }
-            else
-            {
-                Debug.Log("Not Enough Skill Points!");
-            }
         }
 
         public void WaterCannon()
         {
-            if (DebugUpSkill(skillBook.waterCannon, 10, upGradePoint) && upGradePoint >= 10)
+            if (DebugUpSkill(skillBook.waterCannon, 10, upGradePoint))
             {
                 LearnSkill(skillBook.waterCannon);
                 upGradePoint -= 10;
@@ -555,15 +539,11 @@ namespace Searching
                     upGradePoint = 0;
                 }
             }
-            else
-            {
-                Debug.Log("Not Enough Skill Points!");
-            }
         }
 
         public void SeedBomb()
         {
-            if (DebugUpSkill(skillBook.seedBomb, 10, upGradePoint) && upGradePoint >= 10)
+            if (DebugUpSkill(skillBook.seedBomb, 10, upGradePoint))
             {
                 LearnSkill(skillBook.seedBomb);
                 upGradePoint -= 10;
@@ -571,10 +551,6 @@ namespace Searching
                 {
                     upGradePoint = 0;
                 }
-            }
-            else
-            {
-                Debug.Log("Not Enough Skill Points!");
             }
         }
 

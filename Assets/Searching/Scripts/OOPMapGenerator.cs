@@ -316,7 +316,7 @@ namespace Searching
             else
             {
                 enemyCount = 0;
-                exit.isGameWon = true;
+                exit.YouWin.SetActive(true);
                 Debug.Log("You Win!!!");
             }
         }
