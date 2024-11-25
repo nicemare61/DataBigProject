@@ -44,14 +44,20 @@ public class SpeedSkill : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionTrigger2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
         {
             Destroy(this.gameObject);
+            Debug.Log("Hit Enemy");
         }
 
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.tag == "Wall")
         {
             Destroy(this.gameObject);
         }

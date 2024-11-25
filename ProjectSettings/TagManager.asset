@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Item
   - Exit
+  - Skill
   layers:
   - Default
   - TransparentFX
