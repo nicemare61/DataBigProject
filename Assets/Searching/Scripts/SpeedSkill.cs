@@ -10,6 +10,7 @@ public class SpeedSkill : MonoBehaviour
     [SerializeField]
     private GameObject[] floorPrefab;
     OOPPlayer oopPlayer;
+    
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
@@ -44,20 +45,20 @@ public class SpeedSkill : MonoBehaviour
         }
     }
 
-    private void OnCollisionTrigger2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.transform.tag == "Enemy")
         {
             Destroy(this.gameObject);
             Debug.Log("Hit Enemy");
         }
 
-        if (other.gameObject.tag == "Wall")
+        if (other.transform.tag == "Wall")
         {
             Destroy(this.gameObject);
         }
