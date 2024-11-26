@@ -89,7 +89,7 @@ namespace Searching
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
-                if (skillBook.fireWall.isUnlocked)
+                if (skillBook.fireBall.isUnlocked && skillBook.fireWall.isUnlocked)
                 {
                     if (CheckCondition(10, energy, cd4, skillBook.fireWall))
                     {
@@ -112,7 +112,7 @@ namespace Searching
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
-                if (skillBook.waterCannon.isUnlocked)
+                if (skillBook.waterBall.isUnlocked && skillBook.waterCannon.isUnlocked)
                 {
                     if (CheckCondition(12, energy, cd5, skillBook.waterCannon))
                     {
@@ -136,7 +136,7 @@ namespace Searching
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                if (skillBook.seedBomb.isUnlocked)
+                if (skillBook.leafBlade.isUnlocked && skillBook.seedBomb.isUnlocked)
                 {
                     if (CheckCondition(8, energy, cd6, skillBook.seedBomb))
                     {

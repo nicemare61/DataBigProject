@@ -25,7 +25,7 @@ namespace Searching
         public OOPPlayer player;
         public Vector2Int playerStartPos;
 
-        [Header("Set Wave")] public int waveCount = 1;
+        [Header("Set Wave")] public int waveCount = 0;
 
         [Header("Set Prefab")]
         public GameObject[] floorsPrefab;
@@ -47,7 +47,7 @@ namespace Searching
         public int itemPotionCount;
         public int itemKeyCount;
         public int itemFireStormCount;
-        public int enemyCount = 3;
+        public int enemyCount = 2;
 
         public int[,] mapdata;
 
@@ -140,9 +140,6 @@ namespace Searching
                     count++;
                 }
             }*/
-            enemies = new OOPEnemy[X, Y];
-            GenerateEnemy(count);
-            
             fireStorms = new OOPFireStormItem[X, Y];
             count = 0;
             while (count < itemFireStormCount)
