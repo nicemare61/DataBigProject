@@ -301,7 +301,7 @@ namespace Searching
                 }
                 Instantiate(seedBombPrefab, this.transform.position+ new Vector3(2,0), Quaternion.identity);
             }
-            if (spriteRenderer.flipX == false)
+            if (spriteRenderer.flipX == true)
             {
                 for (int y = -1; y < 2; y++)
                 {

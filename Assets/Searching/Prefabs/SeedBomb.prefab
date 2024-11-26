@@ -122,7 +122,7 @@ MonoBehaviour:
   floorPrefab: []
   element: 2
   isLargeSkill: 1
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 4055560163127824564}
 --- !u!1 &3896348644500800722
 GameObject:
   m_ObjectHideFlags: 0

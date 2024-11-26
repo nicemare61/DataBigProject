@@ -154,9 +154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorPrefab: []
-  element: 0
+  element: 1
   isLargeSkill: 1
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 3498670103556073279}
 --- !u!61 &4917137362898493603
 BoxCollider2D:
   m_ObjectHideFlags: 0
