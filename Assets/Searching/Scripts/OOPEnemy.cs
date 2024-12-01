@@ -43,12 +43,11 @@ namespace Searching
 
         protected override void CheckDead()
         {
-            base.CheckDead();
             if (health <= 0)
             {
                 mapGenerator.enemies[positionX, positionY] = null;
                 mapGenerator.mapdata[positionX, positionY] = mapGenerator.empty;
-                mapGenerator.enemyAlive--;
+                mapGenerator.EnemyAlive--;
             }
         }
 

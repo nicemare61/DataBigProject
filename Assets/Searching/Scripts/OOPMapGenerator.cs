@@ -58,6 +58,11 @@ namespace Searching
         public OOPEnemy[,] enemies;
         public OOPExit exit;
         public int enemyAlive;
+        public int EnemyAlive
+        {
+            get { return enemyAlive; }
+            set { enemyAlive = value; }
+        }
 
         // block types ...
         [Header("Block Types")]
@@ -159,11 +164,12 @@ namespace Searching
 
         private void Update()
         {
-            if (enemyAlive <= 0)
+            switch (enemyAlive)
             {
-                WaveManager();
+                case <= 0:
+                    WaveManager();
+                    break;
             }
-
         }
 
         public int GetMapData(float x, float y)
