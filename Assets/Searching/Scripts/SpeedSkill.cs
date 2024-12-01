@@ -54,10 +54,15 @@ public class SpeedSkill : MonoBehaviour
         oopMapGenerator = GameObject.Find("MapController").GetComponent<OOPMapGenerator>();
         int waveNow = oopMapGenerator.waveCount;
         int waveNext = 2;
-        if (waveNow == waveNext && isLargeSkill)
+        if (waveNow == waveNext && isLargeSkill )
         {
             Destroy(this.gameObject);
             waveNext++;
+        }
+
+        if (playerPos != oopPlayer.transform.position)
+        {
+            Destroy(this.gameObject);
         }
     }
 
