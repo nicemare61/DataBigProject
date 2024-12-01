@@ -380,6 +380,35 @@ namespace Searching
 
         public int ElementDamage(int Damage ,Element Attack, Element Defense)
         {
+            switch (Attack)
+            { case Element.Fire:
+                    switch (Defense)
+                    { case Element.Water:
+                            Damage = Damage / 2;
+                            break;
+                        case Element.Plant:
+                            Damage = Damage * 2;
+                            break; }
+                    break;
+                case Element.Plant:
+                    switch (Defense)
+                    { case Element.Fire:
+                            Damage = Damage / 2;
+                            break;
+                        case Element.Water:
+                            Damage = Damage * 2;
+                            break; }
+                    break;
+                case Element.Water:
+                    switch (Defense)
+                    { case Element.Plant:
+                            Damage = Damage / 2;
+                            break;
+                        case Element.Fire:
+                            Damage = Damage * 2;
+                            break; }
+                    break; }
+            /*
             if ((Attack == Element.Fire && Defense == Element.Water) ||
                 (Attack == Element.Water && Defense == Element.Plant) ||
                 (Attack == Element.Plant && Defense == Element.Fire))
@@ -392,7 +421,7 @@ namespace Searching
             {
                 Damage = Damage * 2;
             }
-            
+            */
             return Damage;
         }
 
