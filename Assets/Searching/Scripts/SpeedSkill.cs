@@ -78,26 +78,16 @@ public class SpeedSkill : MonoBehaviour
         {
             Destroy(this.gameObject);
 
-            if (other.GetComponent<Character>().element == element && hpSkill == 1)
+            if (hpSkill == 1)
             {
-                other.GetComponent<Character>().TakeDamage(10);
+                other.GetComponent<Character>()
+                    .TakeDamage(ElementDamage(5, other.GetComponent<Character>().element, element));
                 hpSkill--;
             }
-            else if ((other.GetComponent<Character>().element == Element.Fire && element == Element.Plant ||
-                      other.GetComponent<Character>().element == Element.Plant && element == Element.Water ||
-                      other.GetComponent<Character>().element == Element.Water && element == Element.Fire) &&
-                     hpSkill == 1)
+
+            if (hpSkill == 0)
             {
-                other.GetComponent<Character>().TakeDamage(5);
-                hpSkill--;
-            }
-            else if ((other.GetComponent<Character>().element == Element.Plant && element == Element.Fire ||
-                      other.GetComponent<Character>().element == Element.Water && element == Element.Plant ||
-                      other.GetComponent<Character>().element == Element.Fire && element == Element.Water)
-                     && hpSkill == 1)
-            {
-                other.GetComponent<Character>().TakeDamage(20);
-                hpSkill--;
+                Destroy(this.gameObject);
             }
         }
 
@@ -113,5 +103,51 @@ public class SpeedSkill : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+    public int ElementDamage(int Damage ,Element Attack, Element Defense)
+    {
+        switch (Attack)
+        { case Element.Fire:
+                switch (Defense)
+                { case Element.Water:
+                        Damage = Damage / 2;
+                        break;
+                    case Element.Plant:
+                        Damage = Damage * 2;
+                        break; }
+                break;
+            case Element.Plant:
+                switch (Defense)
+                { case Element.Fire:
+                        Damage = Damage / 2;
+                        break;
+                    case Element.Water:
+                        Damage = Damage * 2;
+                        break; }
+                break;
+            case Element.Water:
+                switch (Defense)
+                { case Element.Plant:
+                        Damage = Damage / 2;
+                        break;
+                    case Element.Fire:
+                        Damage = Damage * 2;
+                        break; }
+                break; }
+        /*
+        if ((Attack == Element.Fire && Defense == Element.Water) ||
+            (Attack == Element.Water && Defense == Element.Plant) ||
+            (Attack == Element.Plant && Defense == Element.Fire))
+        {
+            Damage = Damage / 2;
+        }
+        else if ((Attack == Element.Fire && Defense == Element.Plant) ||
+            (Attack == Element.Water && Defense == Element.Fire) ||
+            (Attack == Element.Plant && Defense == Element.Water))
+        {
+            Damage = Damage * 2;
+        }
+        */
+        return Damage;
     }
 }

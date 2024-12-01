@@ -377,54 +377,7 @@ namespace Searching
             }
             AllCDMinus();
         }
-
-        public int ElementDamage(int Damage ,Element Attack, Element Defense)
-        {
-            switch (Attack)
-            { case Element.Fire:
-                    switch (Defense)
-                    { case Element.Water:
-                            Damage = Damage / 2;
-                            break;
-                        case Element.Plant:
-                            Damage = Damage * 2;
-                            break; }
-                    break;
-                case Element.Plant:
-                    switch (Defense)
-                    { case Element.Fire:
-                            Damage = Damage / 2;
-                            break;
-                        case Element.Water:
-                            Damage = Damage * 2;
-                            break; }
-                    break;
-                case Element.Water:
-                    switch (Defense)
-                    { case Element.Plant:
-                            Damage = Damage / 2;
-                            break;
-                        case Element.Fire:
-                            Damage = Damage * 2;
-                            break; }
-                    break; }
-            /*
-            if ((Attack == Element.Fire && Defense == Element.Water) ||
-                (Attack == Element.Water && Defense == Element.Plant) ||
-                (Attack == Element.Plant && Defense == Element.Fire))
-            {
-                Damage = Damage / 2;
-            }
-            else if ((Attack == Element.Fire && Defense == Element.Plant) ||
-                (Attack == Element.Water && Defense == Element.Fire) ||
-                (Attack == Element.Plant && Defense == Element.Water))
-            {
-                Damage = Damage * 2;
-            }
-            */
-            return Damage;
-        }
-
+        
         public bool DebugUpSkill(Skill skill ,int pointsToUp, int points)
         {
             bool CanUpgrade;
