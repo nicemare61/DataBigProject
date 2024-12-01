@@ -164,11 +164,9 @@ namespace Searching
 
         private void Update()
         {
-            switch (enemyAlive)
+            if (enemyAlive <= 0)
             {
-                case <= 0:
-                    WaveManager();
-                    break;
+                WaveManager();
             }
         }
 
