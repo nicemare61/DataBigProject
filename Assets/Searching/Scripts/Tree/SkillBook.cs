@@ -43,31 +43,29 @@ namespace Tree
 
             //fireStorm = new Skill("FireStorm");
             fireBall = new Skill("FireBall");
-            fireBall.isAvailable = false;
+            fireBall.isAvailable = true;
             
-            fireBall.nextSkills.Add(fireWall);
+            
             fireWall = new Skill("FireWall");
             fireWall.isAvailable = false;
             this.fireSkillTree = new SkillTree(fireBall);
-            this.fireSkillTree = new SkillTree(fireWall);
+            fireBall.nextSkills.Add(fireWall);
             
             waterBall = new Skill("WaterBall");
-            waterBall.isAvailable = false;
+            waterBall.isAvailable = true;
             
-            waterBall.nextSkills.Add(waterCannon);
             waterCannon = new Skill("WaterCannon");
             waterCannon.isAvailable = false;
             this.waterSkillTree = new SkillTree(waterBall);
-            this.waterSkillTree = new SkillTree(waterCannon);
+            waterBall.nextSkills.Add(waterCannon);
             
             leafBlade = new Skill("LeafBlade");
-            leafBlade.isAvailable = false;
+            leafBlade.isAvailable = true;
             
-            leafBlade.nextSkills.Add(seedBomb);
             seedBomb = new Skill("SeedBomb");
             seedBomb.isAvailable = false;
             this.plantSkillTree = new SkillTree(leafBlade);
-            this.plantSkillTree = new SkillTree(seedBomb);
+            leafBlade.nextSkills.Add(seedBomb);
         }
 
         public void Update()
@@ -87,8 +85,6 @@ namespace Tree
                 plantSkillTree.rootSkill.PrintSkillTreeHierarchy("");
                 Debug.Log("====================================");
             }
-
-           
         }
 
         public void UnlockFireBall()

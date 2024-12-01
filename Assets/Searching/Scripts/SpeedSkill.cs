@@ -18,6 +18,7 @@ public class SpeedSkill : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private OOPMapGenerator oopMapGenerator;
     private int hpSkill = 1;
+    private Vector3 playerPos;
 
     private bool currentSideSkill;
     // Start is called before the first frame update
@@ -26,7 +27,7 @@ public class SpeedSkill : MonoBehaviour
     private void Start()
     {
        oopPlayer = GameObject.Find("Player").GetComponent<OOPPlayer>();
-       
+       playerPos = GameObject.Find("Player").transform.position;
        if (oopPlayer.isRight)
        {
            currentSideSkill = true;
@@ -35,8 +36,6 @@ public class SpeedSkill : MonoBehaviour
        {
            currentSideSkill = false;
        }
-       
-       
     }
 
     void Update()

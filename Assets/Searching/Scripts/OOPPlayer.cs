@@ -401,7 +401,7 @@ namespace Searching
             bool CanUpgrade;
             if (pointsToUp <= points)
             {
-                Debug.Log(skill.name + " is Unlocked");
+                Debug.Log(skill.name + " can unlocked with your current points");
                 CanUpgrade = true;
             }
             else
@@ -414,8 +414,7 @@ namespace Searching
 
         public void LearnSkill(Skill skill)
         {
-            skill.isAvailable = true;
-            skill.isUnlocked = true;
+            skill.Unlock();
             Debug.Log($"{skill.name} is unlocked");
         }
 
@@ -517,7 +516,7 @@ namespace Searching
 
         public void FireWall()
         {
-            if (DebugUpSkill(skillBook.fireWall, 10, upGradePoint))
+            if (DebugUpSkill(skillBook.fireWall, 10, upGradePoint)&& skillBook.fireBall.isUnlocked)
             {
                 LearnSkill(skillBook.fireWall);
                 upGradePoint -= 10;
@@ -530,7 +529,7 @@ namespace Searching
 
         public void WaterCannon()
         {
-            if (DebugUpSkill(skillBook.waterCannon, 10, upGradePoint))
+            if (DebugUpSkill(skillBook.waterCannon, 10, upGradePoint)&& skillBook.waterBall.isUnlocked)
             {
                 LearnSkill(skillBook.waterCannon);
                 upGradePoint -= 10;
@@ -543,7 +542,7 @@ namespace Searching
 
         public void SeedBomb()
         {
-            if (DebugUpSkill(skillBook.seedBomb, 10, upGradePoint))
+            if (DebugUpSkill(skillBook.seedBomb, 10, upGradePoint) && skillBook.leafBlade.isUnlocked)
             {
                 LearnSkill(skillBook.seedBomb);
                 upGradePoint -= 10;
